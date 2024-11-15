@@ -1,0 +1,2 @@
+composio add googlecalendar
+composio add googlesheets

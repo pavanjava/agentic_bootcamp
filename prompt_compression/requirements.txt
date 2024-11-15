@@ -1,0 +1,4 @@
+llmlingua==0.2.2
+pydantic==2.9.2
+fastapi==0.115.5
+uvicorn==0.32.0

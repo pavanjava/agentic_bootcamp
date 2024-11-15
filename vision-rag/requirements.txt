@@ -1,0 +1,9 @@
+litserve==0.2.4
+huggingface-hub==0.26.2
+transformers==4.46.2
+torch==2.5.1
+torchao==0.6.1
+pillow==11.0.0
+accelerate==1.1.1
+torchvision==0.20.1
+python-dotenv==1.0.1
