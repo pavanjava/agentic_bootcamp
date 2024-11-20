@@ -68,16 +68,15 @@ class FinancialAgentBuilder:
         )
 
     def _build_reflection_worker(self, critique_worker, verbose: bool):
-
         def stop_critique_on_pass(critique_str: str):
-            return "[PASS]" in critique_str
+            return "[APPROVE]" in critique_str
 
         return ToolInteractiveReflectionAgentWorker.from_defaults(
             critique_agent_worker=critique_worker,
             critique_template=(
-                "Ensure retrieval of historical prices with correct time intervals as specified. "
-                "Review for accuracy, efficiency, and style improvements. "
-                "Write '[PASS]' if all is correct; otherwise, write '[FAIL]'.\n{input_str}"
+                "Please review the retrieval of historical prices with the specified time intervals. "
+                "Evaluate the price for accuracy, efficiency, and adherence to truth. "
+                "If everything is correct, write '[APPROVE]'; otherwise, write '[REJECT]'.\n\n{input_str}"
             ),
             stopping_callable=stop_critique_on_pass,
             correction_llm=OpenAI(model='gpt-4o'),
@@ -93,13 +92,13 @@ class FinancialAgentBuilder:
 
 
 # Instantiate tool and agent
-stock_data_tool = StockDataRetrieverTool()
-financial_agent_builder = FinancialAgentBuilder(data_tool=stock_data_tool)
-introspective_agent = financial_agent_builder.create_introspective_agent(verbose=True)
+# stock_data_tool = StockDataRetrieverTool()
+# financial_agent_builder = FinancialAgentBuilder(data_tool=stock_data_tool)
+# introspective_agent = financial_agent_builder.create_introspective_agent(verbose=True)
 
 # Query example
 query = """I have 10k dollars Now analyze APPL stock and MSFT stock to let me know where to invest 
             this money and how many stock will I get it, Give me the last 3 months historical close prices of APPL and MSFT. 
             Respond with a comparative summary on closing prices and recommended stock to invest."""
-response = introspective_agent.chat(query)
-print(response)
+# response = introspective_agent.chat(query)
+# print(response)

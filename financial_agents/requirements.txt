@@ -8,3 +8,4 @@ llama-index-readers-file
 yfinance
 pandas
 python-dotenv
+litserve
