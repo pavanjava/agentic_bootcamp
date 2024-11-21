@@ -1,15 +1,23 @@
+import os
+
 from llama_index.core.tools.tool_spec.base import BaseToolSpec
 from llama_index.agent.introspective import ToolInteractiveReflectionAgentWorker, IntrospectiveAgentWorker
 from llama_index.core.agent import FunctionCallingAgentWorker  # Import OpenAIAgentWorker here
 from llama_index.agent.openai import OpenAIAgentWorker
 from llama_index.llms.openai import OpenAI
 from llama_index.core.llms import ChatMessage, MessageRole
+from langfuse.llama_index import LlamaIndexInstrumentor
+from dotenv import load_dotenv, find_dotenv
 from datetime import datetime
 import yfinance as yf
 import pandas as pd
-from dotenv import load_dotenv, find_dotenv
+
 
 load_dotenv(find_dotenv())
+
+# instrumenting observability
+instrumentor = LlamaIndexInstrumentor()
+instrumentor.start()
 
 
 class StockDataRetrieverTool(BaseToolSpec):

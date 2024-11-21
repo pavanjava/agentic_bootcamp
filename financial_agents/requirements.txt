@@ -9,3 +9,5 @@ yfinance
 pandas
 python-dotenv
 litserve
+# observability
+langfuse==2.52.2
